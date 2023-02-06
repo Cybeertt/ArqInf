@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"SOLUTION-WIDE PROPERTIES Reference","topic_00000000000001CC.html"],['6',"ArchInfTest Namespace","topic_0000000000000194.html"],['23',"QueryableExtensions Class","topic_0000000000000195.html"]];

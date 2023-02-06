@@ -1,0 +1,105 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<link rel="stylesheet" href="~/css/layout.css">
+@if (SignInManager.IsSignedIn(User))
+{
+    User user = UserManager.FindByNameAsync(@User.Identity?.Name).Result;
+    if (user.ProfilePic == null)
+    {
+        <li class="nav-item">
+            <img style="margin-right: 10px; width: 75px;" src="~/img/background/profile-2092113_1280.png">
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <img style="margin-right: 10px; width: 75px;" src="~/img/clients/@user.ProfilePic">
+        </li>
+    }    
+    <li class="nav-item">
+        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" style= "color:white !important; text-align:center !important;">Bem-vindo<br>@User.Identity?.Name</a>
+    </li>
+     if (this.User.IsInRole("Admin"))
+        {
+            <div class="dropdown">
+                <button class="dropbtn">GERIR</button>
+                <div class="dropdown-content" style= "transform: translate(calc(-18% - 10px), 0);">
+                    <a class="nav-link text-dark" style= "color:white !important; text-align:center !important;" asp-controller="Manager" asp-action="AdminManage">Utilizadores</a>
+                    <a class="nav-link text-dark" style= "color:white !important; text-align:center !important;" asp-controller= "Project" asp-action="Index">Projetos</a>
+                    <a class="nav-link text-dark" style= "color:white !important; text-align:center !important;" asp-controller= "Assignment" asp-action="Index">Tarefas</a>
+                    <a class="nav-link text-dark" style= "color:white !important; text-align:center !important;" asp-controller= "Occupation" asp-action="Index">Ocupações</a>
+                </div>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link text-dark" style= "color:white !important; text-align:center !important;" asp-area="" asp-controller="Manager" asp-action="PendentVacations" >Férias<br>pendentes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" style= "color:white !important; text-align:center !important;" asp-area="" asp-controller="Manager" asp-action="AddUserToRole" >Atribuir<br>Acesso</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" style= "color:white !important; text-align:center !important;" asp-controller= "Statistics" asp-action="GlobalStatistics" asp-route-id="@UserManager.FindByNameAsync(User.Identity?.Name).Result.Id">Estatísticas gerais</a>
+            </li>
+        }
+    if (this.User.IsInRole("ProjectManager"))
+        {
+           <div class="dropdown">
+                <button class="dropbtn">GERIR</button>
+                <div class="dropdown-content" style= "transform: translate(calc(-18% - 10px), 0);">
+                    <a class="nav-link text-dark" style= "color:white !important; text-align:center !important;" asp-controller="Manager" asp-action="AdminManage">Utilizadores</a>
+                    <a class="nav-link text-dark" style= "color:white !important; text-align:center !important;" asp-controller= "Assignment" asp-action="Index">Tarefas</a>
+                </div>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link text-dark" style= "color:white !important; text-align:center !important;" asp-controller= "Statistics" asp-action="GlobalStatistics" asp-route-id="@UserManager.FindByNameAsync(User.Identity?.Name).Result.Id">Estatísticas gerais</a>
+            </li>
+        }
+
+    if (!this.User.IsInRole("Admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" style= "color:white !important; text-align:center !important;" asp-controller= "User" asp-action="SendEmailAdmin">Contactar<br>Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" style= "color:white !important; text-align:center !important;" asp-controller= "User" asp-action="BookVacation" asp-route-id="@UserManager.FindByNameAsync(User.Identity?.Name).Result.Id">Minhas<br>Férias</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" style= "color:white !important; text-align:center !important;" asp-controller= "Assignment" asp-action="MyAssignments" asp-route-id="@UserManager.FindByNameAsync(User.Identity?.Name).Result.Id">Minhas<br>Tarefas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" style= "color:white !important; text-align:center !important;" asp-controller= "Statistics" asp-action="Index" asp-route-id="@UserManager.FindByNameAsync(User.Identity?.Name).Result.Id">Estatísticas</a>
+            </li>
+        }
+    <li class="nav-item">
+        <form style= "margin: auto; margin-top: -4.5%; " class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button  type="submit" class="nav-link btn btn-link text-dark" style= "color:white !important;">LOGOUT</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register" style= "color:white !important;">Register</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login" style= "color:white !important;">Login</a>
+    </li>
+}
+
+<script>
+var coll = document.getElementsByClassName("navbar-toggler");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>

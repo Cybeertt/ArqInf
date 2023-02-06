@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"ArqInf Reference","topic_0000000000000132.html"],['311',"ArqInf.Controllers Namespace","topic_00000000000000EC.html"],['351',"UserController Class","topic_000000000000010B.html"],['353',"Methods","topic_000000000000010B_methods--.html"],['354',"AdminManage Method","topic_000000000000010E.html"]];

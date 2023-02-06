@@ -1,0 +1,1 @@
+search_result['586']=["topic_000000000000011B.html","ManagerController.AdminManage Method","Executa a página corrente do profile do administrador"];

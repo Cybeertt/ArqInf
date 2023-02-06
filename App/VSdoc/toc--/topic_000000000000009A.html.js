@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"ArqInf Reference","topic_0000000000000132.html"],['11',"ArqInf.Areas.Identity.Pages.Account Namespace","topic_0000000000000081.html"],['45',"ForgotPasswordModel Class","topic_0000000000000098.html"],['50',"Properties","topic_0000000000000098_props--.html"],['51',"Input Property","topic_000000000000009A.html"]];

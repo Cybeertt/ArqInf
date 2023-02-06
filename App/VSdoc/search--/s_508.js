@@ -1,0 +1,1 @@
+search_result['508']=["topic_0000000000000101.html","ManagerController.DeleteUser Method","Executa a página corrente do menu de dar delete"];

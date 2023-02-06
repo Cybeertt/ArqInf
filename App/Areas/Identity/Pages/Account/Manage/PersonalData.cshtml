@@ -1,0 +1,76 @@
+﻿@page
+@model PersonalDataModel
+@{
+    ViewData["Title"] = "Personal Data";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+}
+
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/styles.min.css">
+  </head>
+  <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="54" style="background: url('/img/background/fundo perfil.png');
+            background-size: cover; 
+            padding-top: 10px; 
+            padding-bottom: 55px;">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav" style="padding-bottom: 10px;padding-top: 21px;">
+      <div class="container">
+        <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <img src="~/img/background/icon.png" style="width: 135px;">
+          <ul class="navbar-nav ms-auto text-uppercase">
+            <li class="nav-item" style="width: 52.4px;margin-left: 0px;padding-left: 7px;">
+              <i class="fa fa-envelope d-inline-flex" style="margin-right: 15px;font-size: 34.4px;margin-top: 0px;padding-top: 19px;padding-right: 0px;"></i>
+            </li>
+            <li class="nav-item">
+              <img style="margin-right: 10px;width: 75px;" src="~/img/background/profile-2092113_1280.png">
+            </li>
+            @*<li class="nav-item">
+              <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" style="font-size: 18.4px;">Logout</a>
+            </li>*@
+            <partial name="_LoginPartial" />
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div style="margin-top: 7%">
+@*<h3>@ViewData["Title"]</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
+        <p>
+            <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
+        </p>
+        <form id="download-data" asp-page="DownloadPersonalData" method="post">
+            <button class="btn btn-primary" type="submit">Download</button>
+        </form>
+        <p>
+            <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">Delete</a>
+        </p>
+    </div>
+</div>
+    </div>*@
+    <header class="masthead" style="background-image:url('~/img/header-bg.jpg');">
+      <div class="container"></div>
+    </header>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/script.min.js"></script>
+  </body>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

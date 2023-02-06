@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ArqInf.Models.Occupation>
+
+@{
+    ViewData["Title"] = "GiveOccupation";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%22%3E
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script%22%3E
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/styles.min.css">
+    <link rel="stylesheet" href="~/css/layout.css">
+</head>
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="54" style="background: url('/img/background/fundo perfil.png');
+            background-size: cover;
+            padding-top: 10px;
+            padding-bottom: 55px;">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav" style="padding-bottom: 10px; padding-top: 21px;">
+        <div class="container">
+            <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <img class="icon" src="~/img/background/icon.png" style="width: 135px;">
+                <ul class="navbar-nav ms-auto text-uppercase">
+                    <partial name="_LoginPartial" />
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <p style="margin-top: 2%;color:white; text-align: center; font-size: 36px;">Atribuir Ocupação</p>
+        <div class="row" style= "display: flex; justify-content: center; align-items: center; text-align: center; margin: 0 auto;">
+            <div class="col-md-6" style= "text-align: center; margin-left: -70px;">
+                <form asp-controller="Manager" method="post" asp-action="GiveOccupation" style= "text-align: center;">
+                    <select class="form-control" id="occupationName" name="occupationName">
+                        @foreach (var item in Model)
+                        {
+                            <option id ="@item.OccupationName" name= "@item.OccupationName"  runat="server">@Html.DisplayFor(modelItem => item.OccupationName)</option>  
+                        }
+                    </select>
+                    <button class="btn btn-danger" style= "display: block; margin: 0 auto; margin-top: 3%;" asp-controller="Manager" asp-action="GiveOccupation" asp-route-id = "@TempData["userId"]">Salvar</button>
+                </form>
+            </div>
+        </div>
+        <a asp-action="AdminManage" style= "display: block; margin: 0 auto; margin-top: 1.5%; text-align: center;">Voltar à lista</a>
+    </section>
+    <header class="masthead" style="background-image:url('~/img/header-bg.jpg');">
+        <div class="container"></div>
+    </header>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/script.min.js"></script>
+</body>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+
+
+

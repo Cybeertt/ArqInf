@@ -1,0 +1,60 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8+">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/styles.min.css">
+</head>
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="54" style="background: url('/img/background/ImagemPaginaRegisto.png');
+            background-size: cover;
+            padding-bottom: 10px;">
+    <header class="masthead">
+        <div class="container">
+            <div class="intro-text" style="margin-top: calc(-4.5% - 100px)">            >
+                <img src="~/img/background/icon.png" style="width: 191px;transform-origin: top;opacity: 1;padding-top: 28px;padding-bottom: 32px;">
+                <div class="intro-lead-in"></div>
+                <form class="text-center d-inline-block" method="post" style="width: 450px;margin-left: 0px;transform: scale(1);transform-origin: center;" asp-route-returnUrl="@Model.ReturnUrl">
+                    <h2 class="text-center text-dark d-inline-flex">
+                        <strong>Criar Conta</strong>
+                    </h2>
+                    <div class="mb-3">
+                        <input class="form-control d-inline-flex" asp-for="Input.Email" autocomplete="username" aria-required="true" placeholder="Email"/>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control d-inline-flex" asp-for="Input.Password" autocomplete="new-password" aria-required="true" placeholder="Password"/>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control d-inline-flex" asp-for="Input.ConfirmPassword" autocomplete="new-password" aria-required="true" placeholder="Password (repetida)"/>
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary d-block w-100" type="submit" style="color: #000000;font-weight: bold;">Registar</button>
+                    </div>
+                    <a class="link-dark already" asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Se já possui uma conta! Clique aqui.</a>
+                </form>
+                <div class="intro-heading text-uppercase"></div>
+            </div>
+        </div>
+    </header>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/script.min.js"></script>
+</body>
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

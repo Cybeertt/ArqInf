@@ -1,0 +1,153 @@
+﻿@model IEnumerable<ArqInf.Models.Assignment>
+
+@{
+    ViewData["Title"] = "UserAssignments";
+}
+
+@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
+    {
+        Layout = (string)parentLayout;
+    }
+    else
+    {
+        Layout = "/Views/Shared/_Layout.cshtml";
+    }
+}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/styles.min.css">
+    <link rel="stylesheet" href="~/css/layout.css">
+  </head>
+  <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="54" style="background: url('/img/background/fundo perfil.png'); width: auto; background-size: cover; margin-top: 10px; padding-bottom: 55px;">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav" style="padding-bottom: 10px; padding-top: 21px;">
+        <div class="container">
+            <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <img class="icon" src="~/img/background/icon.png" style="width: 135px;">
+                <ul class="navbar-nav ms-auto text-uppercase">
+                    <partial name="_LoginPartial" />
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead" style="background-image:url('~/img/header-bg.jpg');">
+      <div class="container"></div>
+    </header>
+    <section style="margin-top: 3%; background: rgba(255, 255, 255, 0.75);">
+        <p style="text-align: center; font-size: 36px;">Lista de tarefas do utilizador</p>
+        <div asp-validation-summary="All" class= "text-danger"></div>
+        <div style = "display: display: flex; flex-wrap: wrap; align-items: center; justify-content: center; text-align: center; padding-top: 0.3%;">
+            <label>Pesquisa </label>
+            <input type="text" id="searchFilter" onkeyup="searchFunction()" placeholder="Pesquisar...">
+            <input type="checkbox" id="finalizada" value="Finalizada" onClick="searchFunction()"/> Finalizada
+        </div>
+        <table class ="table" id="assignmentTable" style= "margin-left: calc(-4% -12px); margin-top: 6%; font-size: calc(-3px + 85%); text-align: center;">
+            <tr>
+                <th>
+                    Nome da tarefa
+                </th>
+                <th>
+                    Data limite
+                </th>
+                <th>
+                    Descrição
+                </th>
+                <th>
+                    Orçamento
+                </th>
+                <th>
+                    Finalizada
+                </th>
+            </tr>
+            @foreach (var item in Model) {
+                if(item != null)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AssignmentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LimitDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        @if (item.Budget > 0)
+                        {
+                            <td>@Html.DisplayFor(modelItem => item.Budget)€</td>
+                        }
+                        else
+                        {
+                            <td>Não atribuído</td>
+                        }
+                        @if (item.FinishDate.Year > 2021)
+                        {
+                            <td>&#9989</td>
+                        }
+                        else
+                        {
+                            <td>&#10060;</td>  
+                        }
+                        <td style= "display: inline-block; margin-left: calc(-82px - 7%);">
+                            <form method="post" asp-controller="Assignment" asp-action="Delete" asp-route-id="@item.Id">
+                                <a asp-controller="Assignment" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary" style= "font-size: calc(2.5px + 60%) !important; padding: 0.5px; color: black;">Editar</a>
+                                <a asp-controller="Assignment" asp-action="Details" asp-route-id="@item.Id" class="btn btn-info" style= "font-size: calc(2.5px + 60%) !important; padding: 0.5px;">Detalhes</a>
+                                <a asp-controller="Assignment" asp-action="Finish" asp-route-id="@item.Id" class="btn btn-success" style= "font-size: calc(2.5px + 60%) !important; padding: 0.5px; color: black;">Finalizar</a>
+                                <button type="submit" class="btn btn-warning" style= "font-size: calc(2.5px + 60%) !important; padding: 0.5px;">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                }    
+            }
+        </table>
+        <div style = "display: display: flex; flex-wrap: wrap; align-items: center; justify-content: center; text-align: center; padding-top: 10%;">
+            <a asp-controller="Manager" asp-action="AdminManage" style= "font-weight: bold;">Voltar à lista</a>
+        </div>
+    </section>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/script.min.js"></script>
+    <script>
+        function searchFunction() {
+          // Declare variables
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("searchFilter");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("assignmentTable");
+          tr = table.getElementsByTagName("tr");
+          const checkedFinalizado = document.getElementById("finalizada");
+
+          for (i = 0; i < tr.length; i++) {
+            tdTitle = tr[i].getElementsByTagName("td")[0];
+            tdDescription = tr[i].getElementsByTagName("td")[3];
+            tdFinalizado = tr[i].getElementsByTagName("td")[4];
+            if (tdTitle && checkedFinalizado.checked) {
+              if (((tdTitle.innerHTML.toUpperCase().indexOf(filter) > -1) || (tdDescription.innerHTML.toUpperCase().indexOf(filter) > -1)) && (tdFinalizado.innerText == String.fromCharCode(9989))) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+            if (tdTitle && !checkedFinalizado.checked) {
+              if ((tdTitle.innerHTML.toUpperCase().indexOf(filter) > -1) || (tdDescription.innerHTML.toUpperCase().indexOf(filter) > -1)) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+    </script>
+  </body>
+</html>

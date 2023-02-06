@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"ArqInf Reference","topic_0000000000000132.html"],['11',"ArqInf.Areas.Identity.Pages.Account Namespace","topic_0000000000000081.html"],['72',"LoginWith2faModel Class","topic_00000000000000AE.html"],['82',"Methods","topic_00000000000000AE_methods--.html"],['84',"OnPostAsync Method","topic_00000000000000B7.html"]];

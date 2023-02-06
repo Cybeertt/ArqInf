@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ArqInf.Models.User">
+    <Position X="21.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAGAAQAAAAACAEAAAAAQAAAAAAAAAAwAAAAAAAAg=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.AspNetCore.Identity.IdentityUser">
+    <Position X="19.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Microsoft.AspNetCore.Identity.IdentityUser&lt;TKey&gt;">
+    <Position X="19.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="ArqInf.Controllers.UserController">
+    <Position X="16.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAACAAgAAAAAAABAAAgAAAAA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.AspNetCore.Mvc.Controller">
+    <Position X="13.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ArqInf.Controllers.ManagerController">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="ArqInf.Controllers.ManagerController.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\ManagerController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAEAIAABAEkQAAAAASAEgCgAAAAAAAAAgAQAoE=</HashCode>
+      <FileName>Controllers\ManagerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Controllers.HomeController">
+    <Position X="11" Y="7.75" Width="1.5" />
+    <InheritanceLine Type="Microsoft.AspNetCore.Mvc.Controller" FixedToPoint="true">
+      <Path>
+        <Point X="14.25" Y="4.858" />
+        <Point X="14.25" Y="7.558" />
+        <Point X="11.75" Y="7.558" />
+        <Point X="11.75" Y="7.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAABCAAAAAAAQAAAAAAAAAAIAAAAQAAABEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Areas.Identity.Pages.Account.LoginModel">
+    <Position X="8.5" Y="2.25" Width="1.5" />
+    <NestedTypes>
+      <Class Name="ArqInf.Areas.Identity.Pages.Account.LoginModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\Login.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAgAABAAAAAMAAAAQAAAAIEAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Login.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Areas.Identity.Pages.Account.RegisterModel">
+    <Position X="6.75" Y="2.25" Width="1.5" />
+    <NestedTypes>
+      <Class Name="ArqInf.Areas.Identity.Pages.Account.RegisterModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\Register.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAADAAAAQAABAAgAABAAAAgMgCAAQQAAAIEAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Register.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Areas.Identity.Pages.Account.ConfirmEmailModel">
+    <Position X="6.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\ConfirmEmail.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Areas.Identity.Pages.Account.Manage.IndexModel">
+    <Position X="8.5" Y="6" Width="1.5" />
+    <NestedTypes>
+      <Class Name="ArqInf.Areas.Identity.Pages.Account.Manage.IndexModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\Manage\Index.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABAAgAAAAAAAgAQBAAAAAEAAAAAAAAAAEAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\Index.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Controllers.AssignmentController">
+    <Position X="15.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAABBACAAAAAAAABAAEAEEACAAEAAAAAAAg=</HashCode>
+      <FileName>Controllers\AssignmentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Controllers.FileUploadsController">
+    <Position X="12.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAABBACAAAAAAAAAAAEAEEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\FileUploadsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Controllers.OccupationController">
+    <Position X="14.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAABBACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\OccupationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Controllers.ProjectController">
+    <Position X="17.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IIAAAAAAAAABBACAAAAAAgAAAAEgAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ProjectController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Models.Assignment">
+    <Position X="23.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAASAAAAAAAiAAAAAAAAAAAAAAAAAAAAAACQAAAAgCA=</HashCode>
+      <FileName>Models\Assignment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Models.FileUpload">
+    <Position X="23.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Models\FileUpload.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Models.Occupation">
+    <Position X="23.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Models\Occupation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Models.Project">
+    <Position X="23.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAiAAAACAAAAAAAAAAAAgAAAAAAAEAAgCA=</HashCode>
+      <FileName>Models\Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Models.ProjectAssignments">
+    <Position X="19.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ProjectAssignments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Models.UserAssignments">
+    <Position X="21.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UserAssignments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArqInf.Models.Role">
+    <Position X="21.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Models\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

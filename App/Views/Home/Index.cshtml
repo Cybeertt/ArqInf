@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+    />
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/css/styles.min.css" />
+  </head>
+  <body
+    id="page-top"
+    data-bs-spy="scroll"
+    data-bs-target="#mainNav"
+    data-bs-offset="54"
+    style="background: url('/img/background/ImagemPaginaRegisto.png');
+            background-size: cover;
+            padding-bottom: 10px;"
+  >
+    <header class="masthead">
+      <div class="container" background = >
+        <div class="intro-text" style="margin-top: calc(-4% - 100px)">
+          <img
+            src="~/img/background/icon.png"
+            style="
+              width: 191px;
+              transform-origin: top;
+              opacity: 1;
+              padding-top: 28px;
+              -moz-border-left-colorspx;
+              
+            "
+          />
+          <div class="intro-lead-in" style="margin-top: 80px"></div>
+          <a  class="btn btn-primary btn-xl text-uppercase" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"
+          style="
+              border-radius: 62px;
+              background: var(--bs-white);
+              color: rgb(0, 0, 0);
+              width: auto;
+              border-color: var(--bs-body-font-weight);
+            "
+          >Login @User.Identity?.Name</a>
+          <div class="intro-heading text-uppercase"></div>
+          <a
+            class="btn btn-primary btn-xl text-uppercase" 
+            class="form-inline" asp-area="Identity" asp-page="/Account/Register" 
+            style="
+              border-radius: 62px;
+              background: var(--bs-white);
+              color: rgb(0, 0, 0);
+              width: 145px;
+              border-color: var(--bs-body-font-weight);
+              padding-top: -4px;
+              display: inline-flex;
+              justify-content: center;
+            "
+            >Registar</a>
+        </div>
+      </div>
+    </header>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/script.min.js"></script>
+  </body>
+</html>

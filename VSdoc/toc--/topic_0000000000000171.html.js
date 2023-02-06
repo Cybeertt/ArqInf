@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"SOLUTION-WIDE PROPERTIES Reference","topic_00000000000001CC.html"],['459',"ArqInf.Models Namespace","topic_0000000000000150.html"],['495',"ProjectAssignments Class","topic_000000000000016F.html"],['496',"Properties","topic_000000000000016F_props--.html"],['499',"Project Property","topic_0000000000000171.html"]];

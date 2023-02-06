@@ -1,0 +1,109 @@
+﻿@model ArqInf.Models.Project
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%22%3E
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script%22%3E
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/styles.min.css">
+    <link rel="stylesheet" href="~/css/layout.css">
+</head>
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="54" style="background: url('/img/background/fundo perfil.png');
+            background-size: cover;
+            padding-top: 10px;
+            padding-bottom: 55px;">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav" style="padding-bottom: 10px; padding-top: 21px;">
+        <div class="container">
+            <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <img class="icon" src="~/img/background/icon.png" style="width: 135px;">
+                <ul class="navbar-nav ms-auto text-uppercase">
+                    <partial name="_LoginPartial" />
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <p style="margin-top: 2%;color:white; text-align: center; font-size: 36px;">Detalhes do Projeto</p>
+        <div class="row" style= "display: flex; justify-content: center; align-items: center; text-align: center; margin: 0 auto;">
+            <div class="col-md-6" style= "text-align: center; margin-left: calc(25% - 120px); white-space: nowrap;">
+                <dl class="row" style= "text-align: center;">
+                    <dt class = "col-sm-2" style= "color: white;">
+                        Nome do Projeto
+                    </dt>
+                    <dd class = "col-sm-10" style= "font-weight: bold;">
+                        @Html.DisplayFor(model => model.ProjectName)
+                    </dd>
+                    <dt class = "col-sm-2" style= "color: white;">
+                        Início
+                    </dt>
+                    <dd class = "col-sm-10" style= "font-weight: bold;">
+                        @Html.DisplayFor(model => model.StartDate)
+                    </dd>
+                    <dt class = "col-sm-2" style= "color: white;">
+                        Limite
+                    </dt>
+                    <dd class = "col-sm-10" style= "font-weight: bold;">
+                        @Html.DisplayFor(model => model.LimitDate)
+                    </dd>
+                    <dt class = "col-sm-2" style= "color: white;">
+                        Data de fim
+                    </dt>
+                    @if (Model.FinishDate.Year > 2021)
+                    {
+                        <dd class = "col-sm-10" style= "font-weight: bold;">
+                            @Html.DisplayFor(model => model.FinishDate)
+                        </dd>
+                    }
+                    else
+                    {
+                        <dd class = "col-sm-10" style= "font-weight: bold;">
+                            Projeto por concluir
+                        </dd>
+                    }
+                    <dt class = "col-sm-2" style= "color: white;">
+                        Descrição
+                    </dt>
+                    <dd class = "col-sm-10" style= "font-weight: bold;">
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+                    <dt class = "col-sm-2" style= "color: white;">
+                        Orçamento
+                    </dt>
+                    <dd class = "col-sm-10" style= "font-weight: bold;">
+                        @Html.DisplayFor(model => model.Budget)
+                    </dd>
+                    <dt class = "col-sm-2" style= "color: white;">
+                        Custo atual
+                    </dt>
+                    <dd class = "col-sm-10" style= "font-weight: bold;">
+                        @Html.DisplayFor(model => model.MoneySpent)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div style= "display: block; margin: 0 auto; margin-top: 1.5%; text-align: center;">
+            <a class = "btn btn-danger" style= "margin-right: 3%;" asp-action="Edit" asp-route-id="@Model?.Id">Editar</a>
+            <a class = "btn btn-danger" style= "margin-left: 3%;" asp-action="Index">Voltar à lista</a>
+        </div>
+    </section>
+    <header class="masthead" style="background-image:url('~/img/header-bg.jpg');">
+        <div class="container"></div>
+    </header>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/script.min.js"></script>
+</body>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

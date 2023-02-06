@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ArqInf.Models.User>
+@{
+    ViewData["Title"] = "BookVacation";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%22%3E
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script%22%3E
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/styles.min.css">
+    <link rel="stylesheet" href="~/css/layout.css">
+</head>
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="54" style="background: url('/img/background/fundo perfil.png');
+            background-size: cover;
+            padding-top: 10px;
+            padding-bottom: 55px;">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav" style="padding-bottom: 10px; padding-top: 21px;">
+        <div class="container">
+            <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <img class="icon" src="~/img/background/icon.png" style="width: 135px;">
+                <ul class="navbar-nav ms-auto text-uppercase">
+                    <partial name="_LoginPartial" />
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <p style="margin-top: 2%;color:white; text-align: center; font-size: 36px;">Marcar Férias</p>
+        <div class="row" style= "display: flex; justify-content: center; align-items: center; text-align: center; margin: 0 auto;">
+            <div class="col-md-6" style= "text-align: center; margin-left: -70px;">
+                <form method="post" style= "text-align: center;">
+                    <p style="color:white; text-align: center; font-size: 24px; margin-top: 1.5%;">Dias para usufruir este ano: @Model.FirstOrDefault(p => p.UserName == User.Identity?.Name).VacationDays</p>
+                    @if (Model.FirstOrDefault(p => p.UserName == User.Identity?.Name).InVacation == true)
+                    {
+                        <div class="form-group" style= "margin-top: 2.5%;">
+                            <p style="color:white; text-align: center; font-size: 14px; margin-top: 1.5%;">Encontra-se em modo férias até dia: @Model.FirstOrDefault(p => p.UserName == User.Identity?.Name).VacationEnd</p>
+                        </div>
+                    }
+                    else if(Model.FirstOrDefault(p => p.UserName == User.Identity?.Name).VacationDays < 1)
+                    {
+                        <div class="form-group" style= "margin-top: 2.5%;">
+                            <p style="color:white; text-align: center; font-size: 14px; margin-top: 1.5%;">Já esgostou todos os dias de férias para este ano.</p>
+                        </div>
+                    }
+                    else if(Model.FirstOrDefault(p => p.UserName == User.Identity?.Name).VacationStart != null && Model.FirstOrDefault(p => p.UserName == User.Identity?.Name).VacationStart != null)
+                    {
+                        <div class="form-group" style= "margin-top: 2.5%;">
+                            <p style="color:white; text-align: center; font-size: 14px; margin-top: 1.5%;">Já foi feita uma marcação de férias. Pretende desmarcar?</p>
+                            <button class="btn btn-danger" style= "display: block; margin: 0 auto; margin-top: 2%;" asp-controller="User" asp-action="CancelVacation" asp-route-id= "@TempData["userId"]">Desmarcar</button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group" style= "margin-top: 2.5%;">
+                            <Label style="color:white; font-size: 18px;">Insira o dia inicial de férias: </Label>
+                            <input id ="VacationStart" runat="server" type="date" name= "VacationStart" asp-controller="User" asp-action="BookVacation">
+                        </div>
+                        <div class="form-group" style= "margin-top: 2.5%;">
+                            <Label style="color:white; font-size: 18px;">Insira o dia final de férias: </Label>
+                            <input id ="VacationEnd" runat="server" type="date" name= "VacationEnd" asp-controller="User" asp-action="BookVacation">
+                        </div>
+                        <button class="btn btn-danger" style= "display: block; margin: 0 auto; margin-top: 2%;" asp-controller="User" asp-action="BookVacation" asp-route-id= "@TempData["userId"]">Fazer pedido</button>
+                        <div class="form-group" style= "margin-top: 5%;">
+                            <h6 style= "color: yellow; font-weight: bold;">O seu pedido será avaliado e um email com a decisão será enviado oportunamente.</h6>
+                        </div>
+                    }
+                </form>         
+            </div>
+        </div>
+        <a asp-area="Identity" asp-page="/Account/Manage/Index" style= "display: block; margin: 0 auto; margin-top: 1.5%; text-align: center; font-weight: bold;">Voltar atrás</a>
+    </section>
+    <header class="masthead" style="background-image:url('~/img/header-bg.jpg');">
+        <div class="container"></div>
+    </header>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/script.min.js"></script>
+</body>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

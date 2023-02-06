@@ -1,0 +1,76 @@
+﻿@model ArqInf.Controllers.ManagerController.InputModel
+
+@{
+    ViewData["Title"] = "AddUserToRole";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%22%3E
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script%22%3E
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/styles.min.css">
+    <link rel="stylesheet" href="~/css/layout.css">
+</head>
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="54" style="background: url('/img/background/fundo perfil.png');
+            background-size: cover;
+            padding-top: 10px;
+            padding-bottom: 55px;">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav" style="padding-bottom: 10px; padding-top: 21px;">
+        <div class="container">
+            <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <img class="icon" src="~/img/background/icon.png" style="width: 135px;">
+                <ul class="navbar-nav ms-auto text-uppercase">
+                    <partial name="_LoginPartial" />
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <p style="margin-top: 2%;color:white; text-align: center; font-size: 36px;">Atribuir função ao utilizador</p>
+        <div class="row" style= "display: flex; justify-content: center; align-items: center; text-align: center; margin: 0 auto;">
+            <div class="col-md-6" style= "text-align: center; margin-left: -70px;">
+                <form asp-action="AddUserToRole">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div>
+                        <select class="form-control" id="RoleName" asp-for="RoleName">
+                        <optgroup label="Select your role">
+                            <option value="Admin" selected="Admin">Administrador de Sistema</option>
+                            <option value="ProjectManager" selected="ProjectManager">Gestor de Projeto</option>
+                            <option value="Employee" selected="Employee">Funcionário</option>
+                        </optgroup>
+                        </select>
+                    </div>
+                   @* <div class="form-floating" style = "margin-top: 2%;">
+                        <input asp-for="RoleName" class="form-control"  />
+                        <label asp-for="RoleName" class="form-label">Nome da função</label>
+                        <span asp-validation-for="RoleName" class="text-danger"></span>
+                    </div>*@
+                    <div class="form-floating" style = "margin-top: 2%;">
+                        <input asp-for="UserName" class="form-control" />
+                        <label asp-for="UserName" class="form-label">Nome do utilizador</label>
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <button  style = "margin-top: 2%;" id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Adicionar</button>
+                </form>               
+            </div>
+        </div>
+    </section>
+    <header class="masthead" style="background-image:url('~/img/header-bg.jpg');">
+        <div class="container"></div>
+    </header>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/script.min.js"></script>
+</body>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

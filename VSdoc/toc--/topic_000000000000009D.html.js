@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"SOLUTION-WIDE PROPERTIES Reference","topic_00000000000001CC.html"],['33',"ArqInf.Areas.Identity.Pages.Account Namespace","topic_0000000000000081.html"],['67',"ForgotPasswordModel Class","topic_0000000000000098.html"],['74',"Methods","topic_0000000000000098_methods--.html"],['75',"OnPostAsync Method","topic_000000000000009D.html"]];

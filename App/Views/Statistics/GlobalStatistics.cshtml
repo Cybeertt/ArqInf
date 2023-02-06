@@ -1,0 +1,182 @@
+﻿@model ArqInf.Controllers.StatisticsController.TestModel
+
+@{
+    ViewData["Title"] = "Statistics";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%22%3E
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script%22%3E
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/styles.min.css">
+    <link rel="stylesheet" href="~/css/layout.css">
+</head>
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="54" style="background: url('/img/background/fundo perfil.png');
+            background-size: cover;
+            padding-top: 10px;
+            padding-bottom: 55px;">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav" style="padding-bottom: 10px; padding-top: 21px;">
+        <div class="container">
+            <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <img class="icon" src="~/img/background/icon.png" style="width: 135px;">
+                <ul class="navbar-nav ms-auto text-uppercase">
+                    <partial name="_LoginPartial" />
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <div class="row" style= "display: flex; justify-content: center; align-items: center; text-align: center; margin: 0 auto;">
+            <div class="col-md-6" style= "text-align: center; margin-top: 20px;">
+                <div id="container">
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+                 
+            </div>
+        </div>
+    </section>
+    <header class="masthead" style="background-image:url('~/img/header-bg.jpg');">
+        <div class="container"></div>
+    </header>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/script.min.js"></script>
+</body>
+
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const labels = [
+          'Janeiro',
+          'Fevereiro',
+          'Março',
+          'Abril',
+          'Maio',
+          'Junho',
+          'Julho',
+          'Agosto',
+          'Setembro',
+          'Outubro',
+          'Novembro',
+          'Dezembro'
+        ];
+
+        const data = {
+          labels: labels,
+          datasets: [
+          {
+            label: 'Número de Projetos',
+            backgroundColor: 'rgb(138, 11, 11)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [@Model.projectsPerMonth[0], @Model.projectsPerMonth[1], @Model.projectsPerMonth[2], @Model.projectsPerMonth[3], @Model.projectsPerMonth[4], @Model.projectsPerMonth[5], @Model.projectsPerMonth[6], @Model.projectsPerMonth[7], @Model.projectsPerMonth[8], @Model.projectsPerMonth[9], @Model.projectsPerMonth[10], @Model.projectsPerMonth[11]],
+          },
+          {
+            label: 'Utilizadores ativos em projetos',
+            backgroundColor: 'rgb(51, 0, 102)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [@Model.usersInProject[0], @Model.usersInProject[1], @Model.usersInProject[2], @Model.usersInProject[3], @Model.usersInProject[4], @Model.usersInProject[5], @Model.usersInProject[6], @Model.usersInProject[7], @Model.usersInProject[8], @Model.usersInProject[9], @Model.usersInProject[10], @Model.usersInProject[11]],
+          },
+          {
+            label: 'Orçamentos de projetos (euros)',
+            backgroundColor: 'rgb(0, 0, 225)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [@Model.projectBudgets[0], @Model.projectBudgets[1], @Model.projectBudgets[2], @Model.projectBudgets[3], @Model.projectBudgets[4], @Model.projectBudgets[5], @Model.projectBudgets[6], @Model.projectBudgets[7], @Model.projectBudgets[8], @Model.projectBudgets[9], @Model.projectBudgets[10], @Model.projectBudgets[11]],
+          },
+          {
+            label: 'Gastos de tarefas (euros)',
+            backgroundColor: 'rgb(255, 255, 0)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [@Model.AssignmentCosts[0], @Model.AssignmentCosts[1], @Model.AssignmentCosts[2], @Model.AssignmentCosts[3], @Model.AssignmentCosts[4], @Model.AssignmentCosts[5], @Model.AssignmentCosts[6], @Model.AssignmentCosts[7], @Model.AssignmentCosts[8], @Model.AssignmentCosts[9], @Model.AssignmentCosts[10], @Model.AssignmentCosts[11]],
+          },
+          {
+            label: 'Percentagem de tarefas concluídas',
+            backgroundColor: 'rgb(102, 51, 0)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [@Model.totalDoneAssignments[0], @Model.totalDoneAssignments[1], @Model.totalDoneAssignments[2], @Model.totalDoneAssignments[3], @Model.totalDoneAssignments[4], @Model.totalDoneAssignments[5], @Model.totalDoneAssignments[6], @Model.totalDoneAssignments[7], @Model.totalDoneAssignments[8], @Model.totalDoneAssignments[9], @Model.totalDoneAssignments[10], @Model.totalDoneAssignments[11], 100],
+          },
+          {
+            label: 'Percentagem de projetos concluídos',
+            backgroundColor: 'rgb(51, 0, 0)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [@Model.finishedProjects[0], @Model.finishedProjects[1], @Model.finishedProjects[2], @Model.finishedProjects[3], @Model.finishedProjects[4], @Model.finishedProjects[5], @Model.finishedProjects[6], @Model.finishedProjects[7], @Model.finishedProjects[8], @Model.finishedProjects[9], @Model.finishedProjects[10], @Model.finishedProjects[11], 100],
+          }]
+        };
+
+        const plugin = {
+          id: 'myChart',
+          beforeDraw: (chart) => {
+            const ctx = chart.canvas.getContext('2d');
+            ctx.save();
+            ctx.globalCompositeOperation = 'destination-over';
+            ctx.fillStyle = 'rgb(219, 229, 229, 0.4)';
+            ctx.fillRect(0, 0, chart.width, chart.height);
+            ctx.restore();
+          }
+        };
+
+        const config = {
+          type: 'bar',
+          data: data,
+          plugins: [plugin],
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                   labels: {
+                      color: "black",
+                      font: {
+                        size: 14
+                      }
+                    },
+                    position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Estatísticas por mês do Ano @DateTime.Now.Year',
+                color: "#000000",
+                font:{
+                    size: 24,
+                }
+              }
+            },
+             scales: {
+                yAxes: {
+                    grid: {
+                      color: 'black'
+                    },
+                    ticks: {
+                        color: "#000000",
+                        font: {
+                            size: 14,
+                        }
+                    },
+                },
+                xAxes: {
+                    ticks: {
+                        color: "#000000",
+                        font: {
+                            size: 14,
+                        }
+                    },
+                }
+            }
+          },
+        };
+    </script>        
+
+    <script>
+        const myChart = new Chart(
+          document.getElementById('myChart'),
+          config
+        );
+    </script>
+ }

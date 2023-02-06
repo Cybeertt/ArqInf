@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"SOLUTION-WIDE PROPERTIES Reference","topic_00000000000001CC.html"],['333',"ArqInf.Controllers Namespace","topic_00000000000000EC.html"],['351',"FileUploadsController Class","topic_00000000000000FA.html"],['353',"Methods","topic_00000000000000FA_methods--.html"],['356',"DeleteConfirmed Method","topic_0000000000000102.html"]];

@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"SOLUTION-WIDE PROPERTIES Reference","topic_00000000000001CC.html"],['525',"MediESTecaTest Namespace","topic_0000000000000189.html"],['526',"IdentityArqInfContextFixture Class","topic_000000000000018A.html"],['528',"Properties","topic_000000000000018A_props--.html"]];

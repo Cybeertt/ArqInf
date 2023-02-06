@@ -1,0 +1,202 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+@model IEnumerable<ArqInf.Models.User>
+
+@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
+    {
+        Layout = (string)parentLayout;
+    }
+    else
+    {
+        Layout = "/Views/Shared/_Layout.cshtml";
+    }
+}
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/styles.min.css">
+    <link rel="stylesheet" href="~/css/layout.css">
+  </head>
+  <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="54" style="background: url('/img/background/fundo perfil.png'); width: auto; background-size: cover; margin-top: 10px; padding-bottom: 55px;">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav" style="padding-bottom: 10px; padding-top: 21px;">
+        <div class="container">
+            <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <img class="icon" src="~/img/background/icon.png" style="width: 135px;">
+                <ul class="navbar-nav ms-auto text-uppercase">
+                    <partial name="_LoginPartial" />
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead" style="background-image:url('~/img/header-bg.jpg');">
+      <div class="container"></div>
+    </header>
+    <section style="margin-top: 3%; background: rgba(255, 255, 255, 0.75);">
+        <p style="text-align: center; font-size: 36px;">Lista de utilizadores</p>
+        <div asp-validation-summary="All" class= "text-danger"></div>
+        <div style = "display: display: flex; flex-wrap: wrap; align-items: center; justify-content: center; text-align: center; padding-top: 0.3%;">
+            <label>Pesquisa </label>
+            <input type="text" id="searchFilter" onkeyup="searchFunction()" placeholder="Pesquisar...">
+            <input type="checkbox" id="ferias" value="Ferias" onClick="searchFunction()"/> Ao Serviço
+        </div>
+        <table class ="table" id=userTable style= "margin-left: calc(4% - 20px); margin-top: 6%; font-size: calc(-3px + 85%); text-align: center;">
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Ocupação
+                </th>
+                <th>
+                    Fim de<br/>férias
+                </th>
+                <th>
+                    Tarefas
+                </th>
+                <th>
+                    Estatísticas
+                </th>
+
+            </tr> 
+            @foreach (var item in Model)
+            {
+                if (item != null)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Occupation.OccupationName)         
+                        </td>
+                        @if (item.InVacation == true)
+                        {
+                            <td>@Html.DisplayFor(modelItem => item.VacationEnd)</td>
+                        }
+                        else
+                        {
+                            <td>Não atribuido</td>  
+                        }
+                        <td>
+                            <a asp-controller="Assignment" asp-action="UserAssignments" asp-route-id="@item.Id" style= "font-weight: bold; color: darkred;">Ver tarefas</a>    
+                        </td>
+                        <td>
+                            <a asp-controller="Statistics" asp-action="Index" asp-route-id="@item.Id" style= "font-weight: bold; color: darkred;">Ver estatísticas</a>    
+                        </td>
+                        <td style= "display: inline-block; margin-left: calc(-75px - 10%);">
+                            <form method="post" asp-controller="Manager" asp-action="DeleteUser" asp-route-id="@item.Id">
+                                @if(item.InVacation == false)
+                                {
+                                    <a asp-controller="Manager" asp-action="GiveAssignment" asp-route-id="@item.Id" class="btn btn-primary" style= "font-size: calc(2.5px + 60%) !important; padding: 0.5px; color: black;">Atribuir tarefa</a>
+                                }
+                                @if (this.User.IsInRole("Admin"))
+                                {
+                                    <a asp-controller="Manager" asp-action="GiveOccupation" asp-route-id="@item.Id" class="btn btn-primary" style= "font-size: calc(2.5px + 60%) !important; padding: 0.5px; color: black;">Atribuir ocupação</a>
+                                <a asp-controller="Manager" asp-action="EditUser" asp-route-id="@item.Id" class="btn btn-info" style= "font-size: calc(2.5px + 60%) !important; padding: 0.5px;">Editar</a>
+                                <a asp-controller="Manager" asp-action="SendEmail" asp-route-id="@item.Id" class="btn btn-success" style= "font-size: calc(2.5px + 60%) !important; padding: 0.5px; color: black;">Conversar</a>
+                                <button type="submit" class="btn btn-warning" style= "font-size: calc(2.5px + 60%) !important; padding: 0.5px; !important">Delete</button>  
+                                }            
+                            </form>
+                        </td>
+                    </tr>
+                }            
+            }
+        </table>
+        @if (this.User.IsInRole("Admin"))
+        {
+            <div style = "display: display: flex; flex-wrap: wrap; align-items: center; justify-content: center; text-align: center;">
+                <button class="btn btn-danger" style="margin-top: 10%; margin-right: 10%;" type="button" onclick="location.href='@Url.Action("InviteUser","Manager")'">Convidar utilizador</button>
+                <button class="btn btn-danger" style="margin-top: 10%; margin-left: 10%;" type="button" onclick="location.href='@Url.Action("SendEmail","User")'">Comunicar utilizadores</button>
+            </div>
+        }
+    </section>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/script.min.js"></script>
+    <script>
+        function searchFunction() {
+          // Declare variables
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("searchFilter");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("userTable");
+          tr = table.getElementsByTagName("tr");
+          const checkedFinalizado = document.getElementById("ferias");
+
+          for (i = 0; i < tr.length; i++) {
+            tdName = tr[i].getElementsByTagName("td")[0];
+            tdEmail = tr[i].getElementsByTagName("td")[1];
+            tdOccupation = tr[i].getElementsByTagName("td")[2];
+            tdFerias = tr[i].getElementsByTagName("td")[3];
+            if (tdName && checkedFinalizado.checked) {
+              if (((tdName.innerHTML.toUpperCase().indexOf(filter) > -1) || (tdEmail.innerHTML.toUpperCase().indexOf(filter) > -1)
+               || (tdOccupation.innerHTML.toUpperCase().indexOf(filter) > -1)) && (tdFerias.innerText == "Não atribuido")) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+            if (tdName && !checkedFinalizado.checked) {
+              if ((tdName.innerHTML.toUpperCase().indexOf(filter) > -1) || (tdEmail.innerHTML.toUpperCase().indexOf(filter) > -1)
+               || (tdOccupation.innerHTML.toUpperCase().indexOf(filter) > -1)) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+    </script>
+  </body>
+</html>
+
+
+@*@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-controller="Leagues" asp-action="Details" asp-route-id="@item.LeagueId">
+                    @Html.DisplayFor(modelItem => item.League.Name)</a> 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Initials)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoundingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfTitles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MainColor)
+            </td>
+            <td>
+                <a asp-controller="Players" asp-action="PlayersByTeam" asp-route-teamId="@item.TeamId">Jogadores</a>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TeamId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TeamId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TeamId">Delete</a>
+            </td>
+        </tr>
+}*@

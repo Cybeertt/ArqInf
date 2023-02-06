@@ -1,0 +1,49 @@
+﻿@page
+@model ResendEmailConfirmationModel
+@{
+    ViewData["Title"] = "Resend email confirmation";
+}
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/styles.min.css">
+  </head>
+  <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="54" style="background: url('/img/background/fundo perfil.png');
+            background-size: cover; 
+            padding-top: 10px; 
+            padding-bottom: 55px;">
+  @*text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 42px #0fa, 0 0 82px #0fa,0 0 92px #0fa;*@
+    <p style="color:white; text-align: center; font-size: 48px; margin-top:3%;">Novo pedido de confirmação da conta</p>
+    <p style="color:white; text-align: center; font-size: 24px; margin-top:4%;">Insira o seu email:</p>
+        @*class="form-inline" asp-area="Identity" asp-page="/Account/Login" *@
+    <div class="row" style= "display: block; text-align: center; margin-left: calc(-0.85% - 80px);">
+        <div class="col-md-4" style= "margin-top: 4%; display: inline-block; text-align: center;">
+            <form method="post" style= "margin-top: 4%; display: inline-block; text-align: center;">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-floating">
+                    <input asp-for="Input.Email" class="form-control" aria-required="true" />
+                    <label asp-for="Input.Email" class="form-label"></label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <button type="submit" class="w-100 btn btn-lg btn-primary">Pedir nova confirmação</button>
+            </form>
+        </div>
+    </div>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/script.min.js"></script>
+  </body>
+</html>

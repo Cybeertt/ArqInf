@@ -1,0 +1,1 @@
+var breadcrumbs=[['-1',"",""],['2',"ArqInf Reference","topic_0000000000000132.html"],['365',"ArqInf.Models Namespace","topic_0000000000000118.html"],['378',"Role Class","topic_0000000000000123.html"],['379',"Properties","topic_0000000000000123_props--.html"],['381',"RoleName Property","topic_0000000000000125.html"]];
